@@ -6,8 +6,13 @@
     "node": ">= 7.0.0"
   },
   "main": "index.js",
+  "peerDependencies": {
+    "react": "^15.5.4"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -39,8 +44,22 @@
   "homepage": "https://github.com/retrofuturejosh/react-modular-audio-player",
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.10",
+    "node-sass": "^4.7.2",
     "prop-types": "^15.6.1",
     "react": "^16.0.0",
-    "url-loader": "^0.6.2"
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.2",
+    "url-loader": "^0.6.2",
+    "webpack": "^2.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1"
   }
 }
