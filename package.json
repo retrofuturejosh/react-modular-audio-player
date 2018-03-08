@@ -1,6 +1,6 @@
 {
   "name": "react-modular-audio-player",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Modular React Audio Player for HTML5 Audio",
   "engines": {
     "node": ">= 7.0.0"
@@ -13,7 +13,24 @@
     "type": "git",
     "url": "https://github.com/retrofuturejosh/react-modular-audio-player.git"
   },
-  "keywords": ["react", "audio", "audio player", "HTML audio", "player", "custom", "modular", "style", "styleable", "stylable", "HTML5", "HTML5 audio", "controls", "audio controls", "react audio player", "react audio"],
+  "keywords": [
+    "react",
+    "audio",
+    "audio player",
+    "HTML audio",
+    "player",
+    "custom",
+    "modular",
+    "style",
+    "styleable",
+    "stylable",
+    "HTML5",
+    "HTML5 audio",
+    "controls",
+    "audio controls",
+    "react audio player",
+    "react audio"
+  ],
   "author": "Josh Sohn",
   "license": "ISC",
   "bugs": {
