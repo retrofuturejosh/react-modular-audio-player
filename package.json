@@ -6,14 +6,24 @@
     "node": ">= 7.0.0"
   },
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/retrofuturejosh/react-modular-audio-player.git"
+  },
+  "keywords": ["react", "audio", "audio player", "HTML audio", "player", "custom", "modular", "style", "styleable", "stylable", "HTML5", "HTML5 audio", "controls", "audio controls", "react audio player", "react audio"],
   "author": "Josh Sohn",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/retrofuturejosh/react-modular-audio-player/issues"
+  },
+  "homepage": "https://github.com/retrofuturejosh/react-modular-audio-player",
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
     "prop-types": "^15.6.1",
     "react": "^16.0.0",
     "url-loader": "^0.6.2"
-  },
-  "devDependencies": {
   }
 }
