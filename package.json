@@ -1,6 +1,6 @@
 {
   "name": "react-modular-audio-player",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Modular React Audio Player for HTML5 Audio",
   "engines": {
     "node": ">= 7.0.0"
