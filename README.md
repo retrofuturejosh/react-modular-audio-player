@@ -187,7 +187,7 @@ defaultInnerComponentStyle = {
 ```
 ### <a name="example-rearrange"></a>Example AudioPlayer using rearrange
 Below is an example of a custom arranged AudioPlayer with two tiers. The first tier contains the play, rewind, forward, and volume innerComponents. The second tier contains the time and seek innerComponents. It appears like this:
-<img src="https://github.com/retrofuturejosh/react_html5_audio_wrapper/blob/master/public/tierExample.png" width="500">
+<img src="https://github.com/retrofuturejosh/react-modular-audio-player-demo/blob/master/public/tierExample.png?raw=true" width="500">
 
 ```
 let rearrangedPlayer = [
