@@ -123,11 +123,11 @@ The rearrange prop accepts an array of objects, representing tiers. The tier obj
   style: {JSXstyleElement: "value"},
   innerComponents: [
     {
-      name: "subcomponent string name",
+      type: "subcomponent string name",
       style: {JSXstyleElement: "value", JSXstyleElement: "value"}
     },
     {
-      name: "another subcomponent string name",
+      type: "another subcomponent string name",
       style: {JSXstyleElement: "value"}
     },
   ]
