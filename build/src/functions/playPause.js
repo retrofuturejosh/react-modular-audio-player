@@ -11,7 +11,7 @@ export function endPlay(e, skipped) {
     : false;
   let nextTrackIdx = endOfTracks
     ? 0
-    : 1;
+    : this.state.currentTrackIdx + 1;
   if (this.state.loop) {
     nextTrackIdx = this.state.currentTrackIdx;
     endOfTracks = false;

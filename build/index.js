@@ -1019,7 +1019,7 @@ function endPlay(e, skipped) {
 
   clearInterval(this.seekingInterval);
   var endOfTracks = this.state.currentTrackIdx === this.props.audioFiles.length - 1 ? true : false;
-  var nextTrackIdx = endOfTracks ? 0 : 1;
+  var nextTrackIdx = endOfTracks ? 0 : this.state.currentTrackIdx + 1;
   if (this.state.loop) {
     nextTrackIdx = this.state.currentTrackIdx;
     endOfTracks = false;
