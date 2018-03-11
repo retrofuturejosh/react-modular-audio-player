@@ -1,32 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 //Functions that render dumb components
-import { 
+import {
   renderPlay,
   renderRewind,
   renderForward,
-  renderLoop, 
-  renderName, 
-  renderSeekBar, 
-  renderTime, 
+  renderLoop,
+  renderName,
+  renderSeekBar,
+  renderTime,
   renderVolume,
-  renderCustomArrange } from './innerComponents/index'
+  renderCustomArrange
+} from "./innerComponents/index";
 
 //methods
-import functions from './functions/index';
+import functions from "./functions/index";
 
 //initial state
-import { default as initialState } from './initialState'
+import { default as initialState } from "./initialState";
 
 //style sheet
-import './audioPlayerStyle.scss';
+import "./audioPlayerStyle.scss";
 
 //prop types
-import { audioPlayerPropTypes } from './spec/propTypes'
+import { audioPlayerPropTypes } from "./spec/propTypes";
 
 export class AudioPlayer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = initialState;
     this.rewindTimeout = null;
     this.seekingInterval = null;
@@ -42,7 +43,7 @@ export class AudioPlayer extends Component {
       seek: renderSeekBar.bind(this),
       time: renderTime.bind(this),
       volume: renderVolume.bind(this)
-    }
+    };
 
     //binding methods
     this.mountComponent = functions.mountComponent.bind(this);
@@ -78,64 +79,46 @@ export class AudioPlayer extends Component {
     this.mountComponent();
   }
 
-render() {
-  let title = this.props.audioFiles[this.state.currentTrackIdx].title;
+  render() {
+    let title = this.props.audioFiles[this.state.currentTrackIdx].title;
 
-  if (!this.props.rearrange) {
-    //DEFAULT PLAYER VIEW
-    return (
-      <div className="audio-player" style={this.setStyle()}>
-        {this.setAudio()}
+    if (!this.props.rearrange) {
+      //DEFAULT PLAYER VIEW
+      return (
+        <div
+          className="audio-player"
+          key={this.props.key ? this.props.key : null}
+          style={this.setStyle()}
+        >
+          {this.setAudio()}
 
-        {/* Main Controls */}
-        {/* Play/Pause */}
-        {this
-          .componentObj
-          .play('first')}
+          {/* Main Controls */}
+          {/* Play/Pause */}
+          {this.componentObj.play("first")}
 
-        {/* Rewind */}
-        {this.props.hideRewind
-          ? null
-          : this
-            .componentObj
-            .rewind()
-        }
+          {/* Rewind */}
+          {this.props.hideRewind ? null : this.componentObj.rewind()}
 
-        {/* Forward */}
-        {this.props.hideForward
-          ? null
-          : this.componentObj.forward()
-        }
+          {/* Forward */}
+          {this.props.hideForward ? null : this.componentObj.forward()}
 
-        {/* Loop */}
-        {this.props.hideLoop
-          ? null
-          : this.componentObj.loop()
-        }
+          {/* Loop */}
+          {this.props.hideLoop ? null : this.componentObj.loop()}
 
-        {/* Track Name and Artist */}
-        {this.props.hideName
-          ? null
-          : this.componentObj.name()
-        }
+          {/* Track Name and Artist */}
+          {this.props.hideName ? null : this.componentObj.name()}
 
-        {/* Seeking Bar*/}
-        {this.props.hideSeeking
-          ? null
-          : this.componentObj.seek()
-        }
+          {/* Seeking Bar*/}
+          {this.props.hideSeeking ? null : this.componentObj.seek()}
 
-        {/* Current Time / Duration */}
-        {this.props.hideTime
-          ? null
-          : this.componentObj.time()
-        }
+          {/* Current Time / Duration */}
+          {this.props.hideTime ? null : this.componentObj.time()}
 
-        {/* Volume Controls */}
-        {this.componentObj.volume()}
-      </div>
-    )
-  } else {
+          {/* Volume Controls */}
+          {this.componentObj.volume()}
+        </div>
+      );
+    } else {
       //Custom Arrangement
       return this.renderCustomArrange();
     }
