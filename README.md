@@ -13,8 +13,7 @@ This is the react audio player solution you've been looking for! It looks great 
 
 #### Examples
 
-<img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/darkPlayer.png?raw=true" width="400px">
-<img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/greyPlayer.png?raw=true" width="350px">
+<img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/darkPlayer.png?raw=true" width="400px"><img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/greyPlayer.png?raw=true" width="350px">
 <img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/bluePlayer.png?raw=true" width="220px">
 <img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/overlayPlayer.png?raw=true" width="200px">
 
