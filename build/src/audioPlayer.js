@@ -81,14 +81,12 @@ export class AudioPlayer extends Component {
 
   render() {
     let title = this.props.audioFiles[this.state.currentTrackIdx].title;
-    let key = this.props.key ? this.props.key : null;
 
     if (!this.props.rearrange) {
       //DEFAULT PLAYER VIEW
       return (
         <div
           className="audio-player"
-          key={this.props.key ? this.props.key : null}
           style={this.setStyle()}
         >
           {this.setAudio()}
@@ -121,7 +119,7 @@ export class AudioPlayer extends Component {
       );
     } else {
       //Custom Arrangement
-      return this.renderCustomArrange(key);
+      return this.renderCustomArrange();
     }
   }
 }

@@ -97,9 +97,8 @@ export function renderVolume() {
     width={this.state.volumeWidth}/>
 }
 
-export function renderCustomArrange(key) {
+export function renderCustomArrange() {
   return <CustomArrange
-    key={key}
     order={this.props.rearrange}
     setStyle={this.setStyle}
     setAudio={this.setAudio}

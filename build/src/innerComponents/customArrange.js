@@ -4,7 +4,7 @@ import React from 'react';
 import {customArrangePropTypes} from '../spec/propTypes'
 
 const CustomArrange = (props) => {
-  let {order, setStyle, setAudio, componentObj, key} = props,
+  let {order, setStyle, setAudio, componentObj} = props,
     componentCheck = {},
     defaultTierStyle = {
       display: "flex",
@@ -34,7 +34,7 @@ const CustomArrange = (props) => {
   }
 
   return (
-    <div className="audio-player" key={key} style={setStyle(true)}>
+    <div className="audio-player" style={setStyle(true)}>
       {setAudio()}
       {order.map((tier, idx) => {
         let tierStyle = appendStyle(defaultTierStyle, tier.style)
