@@ -7,7 +7,7 @@ export function mountComponent() {
     'pauseIcon',
     'pauseHoverIcon',
     'volumeIcon',
-    'volumeHoverIcon',
+    'volumeEngagedIcon',
     'muteIcon',
     'muteEngagedIcon',
     'forwardIcon',
