@@ -13,7 +13,7 @@ This is the react audio player solution you've been looking for! It looks great 
 
 #### Examples
 
-<img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/darkPlayer.png?raw=true" width="600">
+<img src="https://github.com/retrofuturejosh/demo-react-modular-audio-player/blob/master/public/darkPlayer.png?raw=true" width="600px">
 
 ## Table of Contents
 1. [Setup](#setup)
