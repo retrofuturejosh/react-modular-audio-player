@@ -711,9 +711,10 @@ var AudioPlayer = exports.AudioPlayer = function (_Component) {
       seek: _index.renderSeekBar.bind(_this),
       time: _index.renderTime.bind(_this),
       volume: _index.renderVolume.bind(_this)
+    };
 
-      //binding methods
-    };_this.mountComponent = _index3.default.mountComponent.bind(_this);
+    //binding methods
+    _this.mountComponent = _index3.default.mountComponent.bind(_this);
     _this.setScrollSize = _index3.default.setScrollSize.bind(_this);
     _this.setNameDisplayRef = _index3.default.setNameDisplayRef.bind(_this);
     _this.setOpts = _index3.default.setOpts.bind(_this);
@@ -744,22 +745,26 @@ var AudioPlayer = exports.AudioPlayer = function (_Component) {
   }
 
   _createClass(AudioPlayer, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       this.mountComponent();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var title = this.props.audioFiles[this.state.currentTrackIdx].title;
 
       if (!this.props.rearrange) {
         //DEFAULT PLAYER VIEW
         return _react2.default.createElement(
-          'div',
-          { className: 'audio-player', style: this.setStyle() },
+          "div",
+          {
+            className: "audio-player",
+            key: this.props.key ? this.props.key : null,
+            style: this.setStyle()
+          },
           this.setAudio(),
-          this.componentObj.play('first'),
+          this.componentObj.play("first"),
           this.props.hideRewind ? null : this.componentObj.rewind(),
           this.props.hideForward ? null : this.componentObj.forward(),
           this.props.hideLoop ? null : this.componentObj.loop(),
