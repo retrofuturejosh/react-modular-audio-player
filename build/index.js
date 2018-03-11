@@ -753,6 +753,7 @@ var AudioPlayer = exports.AudioPlayer = function (_Component) {
     key: "render",
     value: function render() {
       var title = this.props.audioFiles[this.state.currentTrackIdx].title;
+      var key = this.props.key ? this.props.key : null;
 
       if (!this.props.rearrange) {
         //DEFAULT PLAYER VIEW
@@ -775,7 +776,7 @@ var AudioPlayer = exports.AudioPlayer = function (_Component) {
         );
       } else {
         //Custom Arrangement
-        return this.renderCustomArrange();
+        return this.renderCustomArrange(key);
       }
     }
   }]);
@@ -1532,6 +1533,7 @@ var CustomArrange = function CustomArrange(props) {
       setStyle = props.setStyle,
       setAudio = props.setAudio,
       componentObj = props.componentObj,
+      key = props.key,
       componentCheck = {},
       defaultTierStyle = {
     display: "flex",
@@ -1561,7 +1563,7 @@ var CustomArrange = function CustomArrange(props) {
 
   return _react2.default.createElement(
     'div',
-    { className: 'audio-player', style: setStyle(true) },
+    { className: 'audio-player', key: key, style: setStyle(true) },
     setAudio(),
     order.map(function (tier, idx) {
       var tierStyle = appendStyle(defaultTierStyle, tier.style);
@@ -1798,8 +1800,9 @@ function renderVolume() {
     width: this.state.volumeWidth });
 }
 
-function renderCustomArrange() {
+function renderCustomArrange(key) {
   return _react2.default.createElement(_customArrange2.default, {
+    key: key,
     order: this.props.rearrange,
     setStyle: this.setStyle,
     setAudio: this.setAudio,
