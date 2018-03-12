@@ -39,7 +39,6 @@ export function endPlay(e, skipped) {
 }
 
 export function handlePlay() {
-  if (this.state.playing) clearInterval(this.seekingInterval);
   if (this.audioRef.readyState < 3) {
     if (!this.state.playing) this.setState({playing: true, paused: false})
     setTimeout(() => {

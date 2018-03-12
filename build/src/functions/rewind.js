@@ -6,6 +6,7 @@ export function handleRewind() {
 
   if (this.state.recentlyRewound || !currentTime) {
     clearTimeout(this.rewindTimeout);
+    clearInterval(this.seekingInterval);
     this.setState({
       currentAudioTime: "0:00",
       seekerVal: "0",
