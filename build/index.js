@@ -1167,6 +1167,7 @@ function handleRewind() {
 
   if (this.state.recentlyRewound || !currentTime) {
     clearTimeout(this.rewindTimeout);
+    clearInterval(this.seekingInterval);
     this.setState({
       currentAudioTime: "0:00",
       seekerVal: "0",
@@ -1177,7 +1178,8 @@ function handleRewind() {
         marginLeft: "0"
       }
     }, function () {
-      if (_this.state.playing) _this.handlePlay();
+      if (_this.state.playing) _this.audioRef.currentTime = 0;
+      _this.handlePlay();
       _this.setScrollSize();
     });
   } else if (currentTime) {
