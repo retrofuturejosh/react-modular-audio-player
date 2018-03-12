@@ -16,7 +16,8 @@ export function handleRewind() {
         marginLeft: "0"
       }
     }, () => {
-      if (this.state.playing) 
+      if (this.state.playing)
+        this.audioRef.currentTime = 0;
         this.handlePlay();
       this.setScrollSize();
     });
