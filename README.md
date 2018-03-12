@@ -5,12 +5,14 @@ This is the react audio player solution you've been looking for! It looks great 
 
 <img src="https://raw.githubusercontent.com/retrofuturejosh/react-modular-audio-player-demo/master/public/example.gif" width="600">
 
+[Examples](https://retrofuturejosh.github.io/demo-react-modular-audio-player/ "Examples of react-modular-audio-player")
+Check out examples with accompanying code snippets.
+
 #### Features
 
 * Single component, ready for use instantly
 * Customizable, modular, and styleable
 * Add your own icons, change the order, decide which subcomponents/icons are rendered
-
 
 ## Table of Contents
 1. [Setup](#setup)
