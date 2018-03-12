@@ -39,11 +39,18 @@ export function endPlay(e, skipped) {
 }
 
 export function handlePlay() {
+  if (this.audioRef.readyState < 3) {
+    if (!this.state.playing) this.setState({playing: true, paused: false})
+    setTimeout(() => {
+      this.handlePlay()
+    }, 500)
+  } else {
   this
     .audioRef
     .play();
   this.setState({playing: true, paused: false});
   this.handleProgress();
+  }
 }
 
 export function handlePause() {
