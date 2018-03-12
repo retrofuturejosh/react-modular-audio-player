@@ -1049,9 +1049,18 @@ function endPlay(e, skipped) {
 }
 
 function handlePlay() {
-  this.audioRef.play();
-  this.setState({ playing: true, paused: false });
-  this.handleProgress();
+  var _this2 = this;
+
+  if (this.audioRef.readyState < 3) {
+    if (!this.state.playing) this.setState({ playing: true, paused: false });
+    setTimeout(function () {
+      _this2.handlePlay();
+    }, 500);
+  } else {
+    this.audioRef.play();
+    this.setState({ playing: true, paused: false });
+    this.handleProgress();
+  }
 }
 
 function handlePause() {
