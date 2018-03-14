@@ -1266,6 +1266,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function mountComponent() {
   var _this = this;
 
+  console.log('hi');
   var opts = this.setOpts(['playIcon', 'playHoverIcon', 'pauseIcon', 'pauseHoverIcon', 'volumeIcon', 'volumeEngagedIcon', 'muteIcon', 'muteEngagedIcon', 'forwardIcon', 'forwardHoverIcon', 'rewindIcon', 'rewindHoverIcon', 'loopIcon', 'loopEngagedIcon', 'fontFamily', 'fontWeight', 'fontSize', 'fontColor', 'sliderClass', 'playerWidth', 'iconSize']);
   this.setState(opts, function () {
     if (!_this.props.hideName) _this.setScrollSize();
