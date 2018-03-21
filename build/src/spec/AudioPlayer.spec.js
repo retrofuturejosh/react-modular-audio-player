@@ -32,7 +32,9 @@ describe("AudioPlayer Component", () => {
     shallowAudioPlayer,
     handleHoverOverSpy,
     handleHoverOutSpy,
+    handleRewindSpy,
     audioPlayer,
+    setScrollSizeSpy,
     newOpts = {
       playerWidth: "10rem",
       playIcon: "/playIcon",
@@ -116,11 +118,17 @@ describe("AudioPlayer Component", () => {
       audioPlayer = mount(<AudioPlayer 
         audioFiles={playlist} 
         playIcon="/playIcon"
-        playHoverIcon="/playHoverIcon"/>);
+        playHoverIcon="/playHoverIcon"
+        forwardIcon="/forwardIcon"
+        forwardHoverIcon="/forwardHoverIcon"
+        rewindIcon="/rewindIcon"
+        rewindHoverIcon="/rewindHoverIcon"/>);
+      setScrollSizeSpy = sinon.spy(audioPlayer.instance(), 'setScrollSize');
       playSpy = sinon.spy(audioPlayer.instance(), "handlePlay");
       pauseSpy = sinon.spy(audioPlayer.instance(), "handlePause");
       handleHoverOverSpy = sinon.spy(audioPlayer.instance(), "handleHoverOver");
       handleHoverOutSpy = sinon.spy(audioPlayer.instance(), "handleHoverOut");
+      handleRewindSpy = sinon.spy(audioPlayer.instance(), 'handleRewind');
       audioPlayer.instance().forceUpdate();
     });
 
@@ -149,7 +157,6 @@ describe("AudioPlayer Component", () => {
       })
       it("setScrollSize is called with mountComponent", () => {
         let instance = audioPlayer.instance()
-        let setScrollSizeSpy = sinon.spy(instance, 'setScrollSize');
         instance.mountComponent();
         expect(setScrollSizeSpy.calledOnce).to.equal(true);
       })
@@ -192,14 +199,14 @@ describe("AudioPlayer Component", () => {
         audioPlayer.find("#play").simulate('click');
         expect(audioPlayer.state().playing).to.equal(true);
       })
-      it('Clicking #play div twice calls handlePlay then handlePause', () => {
+      it("Clicking #play div twice calls handlePlay then handlePause", () => {
         expect(playSpy.calledOnce).to.equal(false);
         audioPlayer.find("#play").simulate('click');
         expect(playSpy.calledOnce).to.equal(true);
         audioPlayer.find("#play").simulate('click');
         expect(pauseSpy.calledOnce).to.equal(true);
       })
-      it('Clicking #play a third time calles handlePlay twice', () => {
+      it("Clicking #play a third time calles handlePlay twice", () => {
         expect(playSpy.calledOnce).to.equal(false);
         audioPlayer.find("#play").simulate('click');
         expect(playSpy.calledOnce).to.equal(true);
@@ -208,33 +215,98 @@ describe("AudioPlayer Component", () => {
         audioPlayer.find("#play").simulate('click');
         expect(playSpy.callCount).to.equal(2);
       })
-      it('mouseOver #play calls handleHoverOver with "play" as second argument and sets state.playHover as true', () => {
-        expect(audioPlayer.state().playHover).to.equal(false);
-        audioPlayer.find("#play").simulate('mouseOver');
-        expect(handleHoverOverSpy.calledOnce).to.equal(true);
-        expect(audioPlayer.state().playHover).to.equal(true);
-        expect(handleHoverOverSpy.args[0][1]).to.equal('play')
+      it("mouseOver #play calls handleHoverOver with 'play' as second argument and sets state.playHover as true", () => {
+        mouseOverCheck(audioPlayer, "playHover", handleHoverOverSpy, '#play')
       })
-      it('mouseLeave #play calls handleHoverOut with "play" as second argument and sets state.playHover as false', () => {
-        expect(audioPlayer.state().playHover).to.equal(false);
-        audioPlayer.find("#play").simulate('mouseOver');
-        expect(audioPlayer.state().playHover).to.equal(true);
-        audioPlayer.find("#play").simulate('mouseLeave');
-        expect(handleHoverOutSpy.calledOnce).to.equal(true);
-        expect(audioPlayer.state().playHover).to.equal(false);
-        expect(handleHoverOutSpy.args[0][1]).to.equal('play')
+      it("mouseLeave #play calls handleHoverOut with 'play' as second argument and sets state.playHover as false", () => {
+        mouseLeaveCheck(audioPlayer, "playHover", handleHoverOutSpy, "#play");
       })
-      it('mouseOver #play changes #play img src', () => {
-        expect(audioPlayer.find("#play").children().props().src).to.equal("/playIcon");
-        audioPlayer.find("#play").simulate('mouseOver');
-        expect(audioPlayer.find("#play").children().props().src).to.equal("/playHoverIcon");
+      it("mouseOver #play changes #play img src", () => {
+        mouseOverSrcCheck(audioPlayer, "#play", "/playIcon", "/playHoverIcon");
       })
-      it('mouseLeave #play changes #play img src', () => {
-        expect(audioPlayer.find("#play").children().props().src).to.equal("/playIcon");
-        audioPlayer.find("#play").simulate('mouseOver');
-        expect(audioPlayer.find("#play").children().props().src).to.equal("/playHoverIcon");
-        audioPlayer.find("#play").simulate('mouseLeave');
-        expect(audioPlayer.find("#play").children().props().src).to.equal("/playIcon");
+      it("mouseLeave #play changes #play img src", () => {
+        mouseLeaveSrcCheck(audioPlayer, "#play", "/playIcon", "/playHoverIcon");
+      })
+    })
+
+    describe("Rewind Functions", () => {
+      it("mouseOver #rewind calls handleHoverOver with 'rewind' as second argument and sets state.rewindHover as true", () => {
+        mouseOverCheck(audioPlayer, "rewindHover", handleHoverOverSpy, "#rewind")
+      })
+      it("mouseLeave #rewind calls handleHoverOut with 'rewind' as second argument and sets state.rewindHover as false", () => {
+        mouseLeaveCheck(audioPlayer, "rewindHover", handleHoverOutSpy, "#rewind");
+      })
+      it("mouseOver #rewind changes #rewind img src", () => {
+        mouseOverSrcCheck(audioPlayer, "#rewind", "/rewindIcon", "/rewindHoverIcon");
+      })
+      it("mouseLeave #rewind changes #rewind img src", () => {
+        mouseLeaveSrcCheck(audioPlayer, "#rewind", "/rewindIcon", "/rewindHoverIcon");
+      })
+      it("clicking #rewind div once when current audio time is 0 calls handleRewind & setScrollSize, sets state.recentlyRewound, changes state.currentTrackIdx", () => {
+        let prevTrackIdx = audioPlayer.state().currentTrackIdx;
+        audioPlayer.find("#rewind").simulate('click');
+        expect(handleRewindSpy.calledOnce).to.equal(true);
+        expect(audioPlayer.state().recentlyRewound).to.equal(true);
+        expect(audioPlayer.state().currentTrackIdx).to.not.equal(prevTrackIdx);
+        expect(setScrollSizeSpy.calledOnce).to.equal(true);
+      })
+      it("after clicking #rewind div, state.recentlyRewound is set back to false after 1200 ms", () => {
+        expect(audioPlayer.state().recentlyRewound).to.equal(false);
+        audioPlayer.find("#rewind").simulate('click');
+        expect(audioPlayer.state().recentlyRewound).to.equal(true);
+        setTimeout(() => {
+          expect(audioPlayer.state().recentlyRewound).to.equal(false)
+        }, 1500)
+      })
+      it("clicking #rewind div when audio's current time is greater than 0 rewinds to beginning of current track and properly sets state", () => {
+        let prevTrackIdx = audioPlayer.state().currentTrackIdx;
+        audioPlayer.setState({currentAudioTime: "1:00", seekerVal: "50"})
+        let oldTime = audioPlayer.state().currentAudioTime;
+        let oldSeekerVal = audioPlayer.state().seekerVal;
+        audioPlayer.instance().audioRef.currentTime = 1000;
+        audioPlayer.find("#rewind").simulate('click');
+        expect(audioPlayer.state().currentTrackIdx).to.equal(prevTrackIdx);
+        expect(audioPlayer.instance().audioRef.currentTime).to.equal(0);
+        expect(audioPlayer.state().currentAudioTime).to.not.equal(oldTime);
+        expect(audioPlayer.state().seekerVal).to.not.equal(oldSeekerVal);
+      })
+      it("clicking #rewind div twice when audio's current time is greater than 0 calls handleRewind & setScrollSize, sets state.recentlyRewound, changes state.currentTrackIdx", () => {
+        let prevTrackIdx = audioPlayer.state().currentTrackIdx;
+        audioPlayer.setState({currentAudioTime: "1:00", seekerVal: "50"})
+        let oldTime = audioPlayer.state().currentAudioTime;
+        let oldSeekerVal = audioPlayer.state().seekerVal;
+        audioPlayer.instance().audioRef.currentTime = 1000;
+        audioPlayer.find("#rewind").simulate('click');
+        audioPlayer.find("#rewind").simulate('click');
+        expect(audioPlayer.state().currentTrackIdx).to.not.equal(prevTrackIdx);
+        expect(audioPlayer.instance().audioRef.currentTime).to.equal(0);
+        expect(audioPlayer.state().currentAudioTime).to.equal("0:00");
+        expect(audioPlayer.state().currentAudioTime).to.not.equal(oldTime);
+        expect(audioPlayer.state().seekerVal).to.equal("0");
+        expect(audioPlayer.state().recentlyRewound).to.equal(true);
+        expect(audioPlayer.state().seekerVal).to.not.equal(oldSeekerVal);
+        expect(setScrollSizeSpy.calledOnce).to.equal(true);
+        expect(handleRewindSpy.callCount).to.equal(2);
+      })
+      it("clicking #rewind div, when playing, calls handlePlay", () => {
+        audioPlayer.find("#rewind").simulate('click');
+        audioPlayer.setState({playing: true});
+        expect(playSpy.calledOnce).to.equal(true);
+      })
+    })
+
+    describe("Forward Functions", () => {
+      it("mouseOver #forward calls handleHoverOver with 'forward' as second argument and sets state.forwardHover as true", () => {
+        mouseOverCheck(audioPlayer, "forwardHover", handleHoverOverSpy, "#forward")
+      })
+      it("mouseLeave #forward calls handleHoverOut with 'forward' as second argument and sets state.forwardHover as false", () => {
+        mouseLeaveCheck(audioPlayer, "forwardHover", handleHoverOutSpy, "#forward");
+      })
+      it("mouseOver #forward changes #forward img src", () => {
+        mouseOverSrcCheck(audioPlayer, "#forward", "/forwardIcon", "/forwardHoverIcon");
+      })
+      it("mouseLeave #forward changes #forward img src", () => {
+        mouseLeaveSrcCheck(audioPlayer, "#forward", "/forwardIcon", "/forwardHoverIcon");
       })
     })
   })
@@ -290,3 +362,45 @@ describe("AudioPlayer Component", () => {
     });
   });
 });
+
+
+
+function mouseOverCheck(wrapper, hoverKey, spy, div) {
+  {
+    expect(wrapper.state()[hoverKey]).to.equal(false);
+    wrapper.find(div).simulate('mouseOver');
+    expect(spy.calledOnce).to.equal(true);
+    expect(wrapper.state()[hoverKey]).to.equal(true);
+    expect(spy.args[0][1]).to.equal(div.slice(1));
+  }
+}
+
+function mouseLeaveCheck(wrapper, hoverKey, spy, div) {
+  {
+    expect(wrapper.state()[hoverKey]).to.equal(false);
+    wrapper.find(div).simulate('mouseOver');
+    expect(wrapper.state()[hoverKey]).to.equal(true);
+    wrapper.find(div).simulate('mouseLeave');
+    expect(spy.calledOnce).to.equal(true);
+    expect(wrapper.state()[hoverKey]).to.equal(false);
+    expect(spy.args[0][1]).to.equal(div.slice(1))
+  }
+}
+
+function mouseOverSrcCheck(wrapper, div, srcOne, srcTwo){
+  {
+    expect(wrapper.find(div).children().props().src).to.equal(srcOne);
+    wrapper.find(div).simulate('mouseOver');
+    expect(wrapper.find(div).children().props().src).to.equal(srcTwo);
+  }
+}
+
+function mouseLeaveSrcCheck(wrapper, div, srcOne, srcTwo) {
+  {
+    expect(wrapper.find(div).children().props().src).to.equal(srcOne);
+    wrapper.find(div).simulate('mouseOver');
+    expect(wrapper.find(div).children().props().src).to.equal(srcTwo);
+    wrapper.find(div).simulate('mouseLeave');
+    expect(wrapper.find(div).children().props().src).to.equal(srcOne);
+  }
+}
