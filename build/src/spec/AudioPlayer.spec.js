@@ -150,9 +150,6 @@ describe("AudioPlayer Component", () => {
       it("setScrollSize is called with mountComponent", () => {
         let instance = audioPlayer.instance()
         let setScrollSizeSpy = sinon.spy(instance, 'setScrollSize');
-        instance.nameDisplay = {};
-        instance.nameDisplay.scrollWidth = 150;
-        instance.nameDisplay.offSetWidth = 100;
         instance.mountComponent();
         expect(setScrollSizeSpy.calledOnce).to.equal(true);
       })
@@ -161,6 +158,21 @@ describe("AudioPlayer Component", () => {
         let setPercentagesSpy = sinon.spy(instance, 'setPercentages');
         instance.mountComponent();
         expect(setPercentagesSpy.calledOnce).to.equal(true);
+      })
+      it("setStyle returns correct style", () => {
+        audioPlayer.setProps(newOpts);
+        audioPlayer.instance().componentDidMount();
+        audioPlayer.update();
+        let style = audioPlayer.find(".audio-player").props().style
+        for (let key in style) {
+          if (key === 'color') {
+            expect(style[key]).to.equal(newOpts['fontColor'])
+          } else if (key === 'width'){
+            expect(style[key]).to.equal(newOpts['playerWidth'])
+          } else {
+          expect(style[key]).to.equal(newOpts[key]);
+          }
+        }
       })
       it("setAudio is called when component renders", () => {
         let instance = audioPlayer.instance()
