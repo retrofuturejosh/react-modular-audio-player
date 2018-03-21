@@ -33,8 +33,8 @@ describe("AudioPlayer Component", () => {
     playlist = [
       {
         src: "/music.mp3",
-        title: "Song",
-        artist: "Singer"
+        title: "Name of a Song",
+        artist: "Name of an Artist"
       },
       {
         src: "/moreMusic.mp3",
@@ -105,6 +105,9 @@ describe("AudioPlayer Component", () => {
         it("setScrollSize is called with mountComponent", () => {
           let instance = shallowAudioPlayer.instance()
           let setScrollSizeSpy = sinon.spy(instance, 'setScrollSize');
+          instance.nameDisplay = {};
+          instance.nameDisplay.scrollWidth = 150;
+          instance.nameDisplay.offSetWidth = 100;
           instance.mountComponent();
           expect(setScrollSizeSpy.calledOnce).to.equal(true);
         })
@@ -117,16 +120,16 @@ describe("AudioPlayer Component", () => {
       })
 
       describe("Play function", () => {
-        it("Clicking Play calls handlePlay", () => {
+        it("Clicking #play div calls handlePlay", () => {
           expect(playSpy.calledOnce).to.equal(false);
           audioPlayer.find("#play").simulate('click');
           expect(playSpy.calledOnce).to.equal(true);
         })
-        it("Clicking Play sets state.playing", () => {
+        it("Clicking #play div sets state.playing", () => {
           audioPlayer.find("#play").simulate('click');
           expect(audioPlayer.state().playing).to.equal(true);
         })
-        it('Clicking play twice calls handlePlay, then handlePause', () => {
+        it('Clicking #play div twice calls handlePlay then handlePause', () => {
           expect(playSpy.calledOnce).to.equal(false);
           audioPlayer.find("#play").simulate('click');
           expect(playSpy.calledOnce).to.equal(true);
