@@ -86,29 +86,8 @@ describe("AudioPlayer Component", () => {
     })
 
     describe('Views', () => {
-      it("renders Play component", () => {
-        expect(audioPlayer.find(Play)).to.have.lengthOf(1);
-      });
-      it("renders a Rewind component", () => {
-        expect(audioPlayer.find(Rewind)).to.have.length(1);
-      });
-      it("renders a Forward component", () => {
-        expect(audioPlayer.find(Forward)).to.have.length(1);
-      });
-      it("renders a Loop component", () => {
-        expect(audioPlayer.find(Loop)).to.have.length(1);
-      });
-      it("renders a Name component", () => {
-        expect(audioPlayer.find(Name)).to.have.length(1);
-      });
-      it("renders a Time component", () => {
-        expect(audioPlayer.find(Time)).to.have.length(1);
-      });
-      it("renders a SeekBar component", () => {
-        expect(audioPlayer.find(SeekBar)).to.have.length(1);
-      });
-      it("renders a Volume component", () => {
-        expect(audioPlayer.find(Volume)).to.have.length(1);
+      it("renders all the child components", () => {
+        checkMultipleComponents(audioPlayer, [Play, Rewind, Forward, Loop, Name, Time, SeekBar, Volume]);
       });
     })
   });
@@ -192,27 +171,29 @@ describe("AudioPlayer Component", () => {
     describe("Play/Pause functions", () => {
       it("Clicking #play div calls handlePlay", () => {
         expect(playSpy.calledOnce).to.equal(false);
-        audioPlayer.find("#play").simulate('click');
+        click(audioPlayer.find("#play"));
         expect(playSpy.calledOnce).to.equal(true);
       })
       it("Clicking #play div sets state.playing", () => {
-        audioPlayer.find("#play").simulate('click');
+        click(audioPlayer.find("#play"));
         expect(audioPlayer.state().playing).to.equal(true);
       })
       it("Clicking #play div twice calls handlePlay then handlePause", () => {
+        let playDiv = audioPlayer.find("#play");
         expect(playSpy.calledOnce).to.equal(false);
-        audioPlayer.find("#play").simulate('click');
+        click(playDiv);
         expect(playSpy.calledOnce).to.equal(true);
-        audioPlayer.find("#play").simulate('click');
+        click(playDiv);
         expect(pauseSpy.calledOnce).to.equal(true);
       })
       it("Clicking #play a third time calles handlePlay twice", () => {
+        let playDiv = audioPlayer.find("#play");
         expect(playSpy.calledOnce).to.equal(false);
-        audioPlayer.find("#play").simulate('click');
+        click(playDiv);
         expect(playSpy.calledOnce).to.equal(true);
-        audioPlayer.find("#play").simulate('click');
+        click(playDiv);
         expect(pauseSpy.calledOnce).to.equal(true);
-        audioPlayer.find("#play").simulate('click');
+        click(playDiv);
         expect(playSpy.callCount).to.equal(2);
       })
       it("mouseOver #play calls handleHoverOver with 'play' as second argument and sets state.playHover as true", () => {
@@ -244,7 +225,7 @@ describe("AudioPlayer Component", () => {
       })
       it("clicking #rewind div once when current audio time is 0 calls handleRewind & setScrollSize, sets state.recentlyRewound, changes state.currentTrackIdx", () => {
         let prevTrackIdx = audioPlayer.state().currentTrackIdx;
-        audioPlayer.find("#rewind").simulate('click');
+        click(audioPlayer.find("#rewind"));
         expect(handleRewindSpy.calledOnce).to.equal(true);
         expect(audioPlayer.state().recentlyRewound).to.equal(true);
         expect(audioPlayer.state().currentTrackIdx).to.not.equal(prevTrackIdx);
@@ -252,7 +233,7 @@ describe("AudioPlayer Component", () => {
       })
       it("after clicking #rewind div, state.recentlyRewound is set back to false after 1200 ms", () => {
         expect(audioPlayer.state().recentlyRewound).to.equal(false);
-        audioPlayer.find("#rewind").simulate('click');
+        click(audioPlayer.find("#rewind"));
         expect(audioPlayer.state().recentlyRewound).to.equal(true);
         setTimeout(() => {
           expect(audioPlayer.state().recentlyRewound).to.equal(false)
@@ -264,7 +245,7 @@ describe("AudioPlayer Component", () => {
         let oldTime = audioPlayer.state().currentAudioTime;
         let oldSeekerVal = audioPlayer.state().seekerVal;
         audioPlayer.instance().audioRef.currentTime = 1000;
-        audioPlayer.find("#rewind").simulate('click');
+        click(audioPlayer.find("#rewind"));
         expect(audioPlayer.state().currentTrackIdx).to.equal(prevTrackIdx);
         expect(audioPlayer.instance().audioRef.currentTime).to.equal(0);
         expect(audioPlayer.state().currentAudioTime).to.not.equal(oldTime);
@@ -276,8 +257,8 @@ describe("AudioPlayer Component", () => {
         let oldTime = audioPlayer.state().currentAudioTime;
         let oldSeekerVal = audioPlayer.state().seekerVal;
         audioPlayer.instance().audioRef.currentTime = 1000;
-        audioPlayer.find("#rewind").simulate('click');
-        audioPlayer.find("#rewind").simulate('click');
+        click(audioPlayer.find("#rewind"));
+        click(audioPlayer.find("#rewind"));
         expect(audioPlayer.state().currentTrackIdx).to.not.equal(prevTrackIdx);
         expect(audioPlayer.instance().audioRef.currentTime).to.equal(0);
         expect(audioPlayer.state().currentAudioTime).to.equal("0:00");
@@ -289,7 +270,7 @@ describe("AudioPlayer Component", () => {
         expect(handleRewindSpy.callCount).to.equal(2);
       })
       it("clicking #rewind div, when playing, calls handlePlay", () => {
-        audioPlayer.find("#rewind").simulate('click');
+        click(audioPlayer.find("#rewind"));
         audioPlayer.setState({playing: true});
         expect(playSpy.calledOnce).to.equal(true);
       })
@@ -351,19 +332,24 @@ describe("AudioPlayer Component", () => {
       expect(audioPlayer.state()).to.deep.equal(rearrangeInitialState);
     });
     it("renders the correct subcomponents", () => {
-      expect(audioPlayer.find(Name)).to.have.length(1);
-      expect(audioPlayer.find(Play)).to.have.length(1);
-      expect(audioPlayer.find(Rewind)).to.have.length(1);
-      expect(audioPlayer.find(Forward)).to.have.length(1);
-      expect(audioPlayer.find(Loop)).to.have.length(1);
-      expect(audioPlayer.find(Time)).to.have.length(1);
-      expect(audioPlayer.find(SeekBar)).to.have.length(1);
-      expect(audioPlayer.find(Volume)).to.have.length(1);
+      checkMultipleComponents(audioPlayer, [Name, Play, Rewind, Forward,Loop, Time, SeekBar, Volume]);
     });
   });
 });
 
+function click(div) {
+  div.simulate('click');
+}
 
+function checkComponents(wrapper, component) {
+  expect(wrapper.find(component)).to.have.length(1);
+}
+
+function checkMultipleComponents(wrapper, componentArr) {
+  componentArr.forEach(component => {
+    checkComponents(wrapper, component);
+  })
+}
 
 function mouseOverCheck(wrapper, hoverKey, spy, div) {
   {
