@@ -1,3 +1,8 @@
+//fix focus outline in firefox
+input[type="range"]::-moz-focus-outer {
+  border: 0;
+}
+
 body {
   a {
     text-decoration: none;
@@ -94,21 +99,21 @@ img {
 }
 
 //style for volume slider
-input[type=range].slider {
+input[type="range"].slider {
   -webkit-appearance: none; // width: 100%;
   margin: 0em 0em;
   background-color: rgba(255, 255, 255, 0);
 }
 
-input[type=range] {
+input[type="range"] {
   width: 100% !important;
 }
 
-input[type=range].slider:focus {
+input[type="range"].slider:focus {
   outline: none;
 }
 
-input[type=range].slider::-webkit-slider-runnable-track {
+input[type="range"].slider::-webkit-slider-runnable-track {
   width: 100%;
   height: 1px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
@@ -117,7 +122,7 @@ input[type=range].slider::-webkit-slider-runnable-track {
   border: 0px solid #000101;
 }
 
-input[type=range].slider::-webkit-slider-thumb {
+input[type="range"].slider::-webkit-slider-thumb {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 1px solid #000000;
   height: 10px;
@@ -128,7 +133,7 @@ input[type=range].slider::-webkit-slider-thumb {
   margin-top: -4.5px;
 }
 
-input[type=range].slider::-webkit-slider-thumb:hover {
+input[type="range"].slider::-webkit-slider-thumb:hover {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 1px solid #000000;
   height: 10px;
@@ -139,11 +144,11 @@ input[type=range].slider::-webkit-slider-thumb:hover {
   margin-top: -4.5px;
 }
 
-input[type=range].slider:focus::-webkit-slider-runnable-track {
+input[type="range"].slider:focus::-webkit-slider-runnable-track {
   background: #000000;
 }
 
-input[type=range].slider::-moz-range-track {
+input[type="range"].slider::-moz-range-track {
   width: 100%;
   height: 1px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
@@ -152,7 +157,7 @@ input[type=range].slider::-moz-range-track {
   border: 0px solid #000101;
 }
 
-input[type=range].slider::-moz-range-thumb {
+input[type="range"].slider::-moz-range-thumb {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 1px solid #000000;
   height: 10px;
@@ -162,7 +167,7 @@ input[type=range].slider::-moz-range-thumb {
   cursor: default;
 }
 
-input[type=range].slider::-moz-range-thumb:hover {
+input[type="range"].slider::-moz-range-thumb:hover {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 1px solid #000000;
   height: 10px;
@@ -172,7 +177,7 @@ input[type=range].slider::-moz-range-thumb:hover {
   cursor: default;
 }
 
-input[type=range].slider::-ms-track {
+input[type="range"].slider::-ms-track {
   width: 100%;
   height: 1px;
   background: transparent;
@@ -180,21 +185,21 @@ input[type=range].slider::-ms-track {
   color: transparent;
 }
 
-input[type=range].slider::-ms-fill-lower {
+input[type="range"].slider::-ms-fill-lower {
   background: #000000;
   border: 0px solid #000101;
   border-radius: 0px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
 }
 
-input[type=range].slider::-ms-fill-upper {
+input[type="range"].slider::-ms-fill-upper {
   background: #000000;
   border: 0px solid #000101;
   border-radius: 0px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
 }
 
-input[type=range].slider::-ms-thumb {
+input[type="range"].slider::-ms-thumb {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 1px solid #000000;
   height: 10px;
@@ -204,7 +209,7 @@ input[type=range].slider::-ms-thumb {
   height: 1px;
 }
 
-input[type=range].slider::-ms-thumb:hover {
+input[type="range"].slider::-ms-thumb:hover {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 1px solid #000000;
   height: 10px;
@@ -214,10 +219,10 @@ input[type=range].slider::-ms-thumb:hover {
   cursor: default;
 }
 
-input[type=range].slider:focus::-ms-fill-lower {
+input[type="range"].slider:focus::-ms-fill-lower {
   background: #000000;
 }
 
-input[type=range].slider:focus::-ms-fill-upper {
+input[type="range"].slider:focus::-ms-fill-upper {
   background: #000000;
 }
