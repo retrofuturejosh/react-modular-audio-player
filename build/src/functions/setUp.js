@@ -84,8 +84,10 @@ export function setAudio() {
     this.audioRef = audioRef;
   }}
     onLoadedMetadata={this.loadDuration}
+    // onSuspend={() => clearInterval(this.seekingInterval)}
     onPlay={this.startPlay}
-    onEnded={this.endPlay}/>
+    onEnded={this.endPlay}
+    />
 }
 
 export function setPercentages() {

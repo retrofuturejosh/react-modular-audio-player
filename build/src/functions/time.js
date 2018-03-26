@@ -1,4 +1,5 @@
 export function setTime(seekTo) {
+  if (this.audioRef){
   let time;
   if (seekTo || seekTo === 0) {
     time = seekTo;
@@ -6,7 +7,8 @@ export function setTime(seekTo) {
     time = this.audioRef.currentTime;
   }
   let currentAudioTime = this.secondsToClock(time);
-  this.setState({currentAudioTime});
+  this.setState({currentAudioTime});    
+  }
 }
 
 export function secondsToClock(time) {

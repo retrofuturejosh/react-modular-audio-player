@@ -1213,13 +1213,17 @@ function handleProgress() {
   if (this.seekingInterval) {
     clearInterval(this.seekingInterval);
   }
-  this.seekingInterval = setInterval(function () {
-    _this.setTime();
-    var currentAudioTime = _this.audioRef.currentTime / _this.audioRef.duration * 100;
-    _this.setState({
-      seekerVal: currentAudioTime.toString()
-    });
-  }, 500);
+  if (this.audioRef) {
+    this.seekingInterval = setInterval(function () {
+      if (_this.audioRef) {
+        _this.setTime();
+        var currentAudioTime = _this.audioRef.currentTime / _this.audioRef.duration * 100;
+        _this.setState({
+          seekerVal: currentAudioTime.toString()
+        });
+      }
+    }, 500);
+  }
 }
 
 function handleSeekSlider(event) {
@@ -1329,9 +1333,11 @@ function setAudio() {
     ref: function ref(audioRef) {
       _this4.audioRef = audioRef;
     },
-    onLoadedMetadata: this.loadDuration,
-    onPlay: this.startPlay,
-    onEnded: this.endPlay });
+    onLoadedMetadata: this.loadDuration
+    // onSuspend={() => clearInterval(this.seekingInterval)}
+    , onPlay: this.startPlay,
+    onEnded: this.endPlay
+  });
 }
 
 function setPercentages() {
@@ -1360,14 +1366,16 @@ exports.setTime = setTime;
 exports.secondsToClock = secondsToClock;
 exports.loadDuration = loadDuration;
 function setTime(seekTo) {
-  var time = void 0;
-  if (seekTo || seekTo === 0) {
-    time = seekTo;
-  } else {
-    time = this.audioRef.currentTime;
+  if (this.audioRef) {
+    var time = void 0;
+    if (seekTo || seekTo === 0) {
+      time = seekTo;
+    } else {
+      time = this.audioRef.currentTime;
+    }
+    var currentAudioTime = this.secondsToClock(time);
+    this.setState({ currentAudioTime: currentAudioTime });
   }
-  var currentAudioTime = this.secondsToClock(time);
-  this.setState({ currentAudioTime: currentAudioTime });
 }
 
 function secondsToClock(time) {

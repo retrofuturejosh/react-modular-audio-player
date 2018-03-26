@@ -2,13 +2,18 @@ export function handleProgress() {
   if (this.seekingInterval) {
     clearInterval(this.seekingInterval);
   }
-  this.seekingInterval = setInterval(() => {
-    this.setTime();
-    let currentAudioTime = (this.audioRef.currentTime / this.audioRef.duration) * 100;
-    this.setState({
-      seekerVal: currentAudioTime.toString()
-    });
-  }, 500);
+  if (this.audioRef) {
+    this.seekingInterval = setInterval(() => {
+      if (this.audioRef) {
+        this.setTime();
+        const currentAudioTime =
+          this.audioRef.currentTime / this.audioRef.duration * 100;
+        this.setState({
+          seekerVal: currentAudioTime.toString()
+        });
+      }
+    }, 500);
+  }
 }
 
 export function handleSeekSlider(event) {
@@ -16,10 +21,7 @@ export function handleSeekSlider(event) {
   clearInterval(this.seekingInterval);
   this.setTime(seekTo);
   this.setState({
-    seekerVal: event
-      .target
-      .value
-      .toString()
+    seekerVal: event.target.value.toString()
   });
 }
 
