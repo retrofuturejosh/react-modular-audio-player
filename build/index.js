@@ -2232,96 +2232,101 @@ exports.default = Volume;
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(32)(false);
-// imports
-
-
-// module
+// Module
 exports.push([module.i, "input[type=\"range\"]::-moz-focus-outer {\n  border: 0; }\n\nbody a {\n  text-decoration: none; }\n\n.audio-player {\n  display: flex;\n  flex-direction: row;\n  cursor: default;\n  align-items: left;\n  justify-content: left;\n  height: auto;\n  align-items: center; }\n  .audio-player ::-webkit-scrollbar {\n    display: none; }\n  .audio-player-track-name {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    -ms-overflow-style: none;\n    overflow: -moz-scrollbars-none;\n    white-space: nowrap;\n    width: 32%;\n    margin: 0em 0.15em; }\n  .audio-player-seeker {\n    display: flex;\n    width: 35%; }\n  .audio-player-controls, .audio-player-time {\n    display: flex;\n    width: fit-content; }\n  .audio-player-time, .audio-player-seeker, .audio-player-volume {\n    margin: 0em 0.15em; }\n  .audio-player-volume {\n    display: flex;\n    width: 33%; }\n    .audio-player-volume img {\n      margin: 0em !important; }\n\n.slide-container {\n  display: flex;\n  align-items: center;\n  margin-right: 0.15em;\n  width: 100%; }\n\n#volume-button {\n  display: flex; }\n\n.marquee {\n  width: auto;\n  min-width: max-content;\n  margin-right: 0.3em; }\n\n.current-time {\n  margin-right: 0.25em;\n  margin-left: 0.25em; }\n\n.current-time,\n.duration,\n#play,\n#pause,\n#volume,\n#forward,\n#loop,\n#rewind {\n  display: flex;\n  flex-direction: column;\n  justify-content: center; }\n\nimg {\n  width: auto;\n  margin: 0em 0.15em; }\n\ninput[type=\"range\"].slider {\n  -webkit-appearance: none;\n  margin: 0em 0em;\n  background-color: rgba(255, 255, 255, 0); }\n\ninput[type=\"range\"] {\n  width: 100% !important; }\n\ninput[type=\"range\"].slider:focus {\n  outline: none; }\n\ninput[type=\"range\"].slider::-webkit-slider-runnable-track {\n  width: 100%;\n  height: 1px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);\n  background: #000000;\n  border-radius: 0px;\n  border: 0px solid #000101; }\n\ninput[type=\"range\"].slider::-webkit-slider-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0.01);\n  -webkit-appearance: none;\n  margin-top: -4.5px; }\n\ninput[type=\"range\"].slider::-webkit-slider-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  -webkit-appearance: none;\n  margin-top: -4.5px; }\n\ninput[type=\"range\"].slider:focus::-webkit-slider-runnable-track {\n  background: #000000; }\n\ninput[type=\"range\"].slider::-moz-range-track {\n  width: 100%;\n  height: 1px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);\n  background: #000000;\n  border-radius: 0px;\n  border: 0px solid #000101; }\n\ninput[type=\"range\"].slider::-moz-range-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0);\n  cursor: default; }\n\ninput[type=\"range\"].slider::-moz-range-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  cursor: default; }\n\ninput[type=\"range\"].slider::-ms-track {\n  width: 100%;\n  height: 1px;\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\ninput[type=\"range\"].slider::-ms-fill-lower {\n  background: #000000;\n  border: 0px solid #000101;\n  border-radius: 0px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0); }\n\ninput[type=\"range\"].slider::-ms-fill-upper {\n  background: #000000;\n  border: 0px solid #000101;\n  border-radius: 0px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0); }\n\ninput[type=\"range\"].slider::-ms-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0.01);\n  height: 1px; }\n\ninput[type=\"range\"].slider::-ms-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  cursor: default; }\n\ninput[type=\"range\"].slider:focus::-ms-fill-lower {\n  background: #000000; }\n\ninput[type=\"range\"].slider:focus::-ms-fill-upper {\n  background: #000000; }\n", ""]);
 
-// exports
 
 
 /***/ }),
 /* 32 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
 */
 // css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
 
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
 
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
+      if (item[2]) {
+        return '@media ' + item[2] + '{' + content + '}';
+      } else {
+        return content;
+      }
+    }).join('');
+  }; // import a list of modules into the list
+
+
+  list.i = function (modules, mediaQuery) {
+    if (typeof modules === 'string') {
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    for (var i = 0; i < this.length; i++) {
+      var id = this[i][0];
+
+      if (id != null) {
+        alreadyImportedModules[id] = true;
+      }
+    }
+
+    for (i = 0; i < modules.length; i++) {
+      var item = modules[i]; // skip already imported module
+      // this implementation is not 100% perfect for weird media query combinations
+      // when a module is imported multiple times with different media queries.
+      // I hope this will never occur (Hey this way we have smaller bundles)
+
+      if (item[0] == null || !alreadyImportedModules[item[0]]) {
+        if (mediaQuery && !item[2]) {
+          item[2] = mediaQuery;
+        } else if (mediaQuery) {
+          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';
+        }
+
+        list.push(item);
+      }
+    }
+  };
+
+  return list;
 };
 
 function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
+  var content = item[1] || '';
+  var cssMapping = item[3];
 
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
+  if (!cssMapping) {
+    return content;
+  }
 
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
 
-	return [content].join('\n');
-}
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
 
-// Adapted from convert-source-map (MIT)
+
 function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+  return '/*# ' + data + ' */';
 }
-
 
 /***/ }),
 /* 33 */
@@ -3161,8 +3166,8 @@ var update = __webpack_require__(39)(content, options);
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./audioPlayerStyle.scss", function() {
-		var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./audioPlayerStyle.scss");
+	module.hot.accept("!!../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./audioPlayerStyle.scss", function() {
+		var newContent = require("!!../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./audioPlayerStyle.scss");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
