@@ -22,7 +22,21 @@ const adapter = new Adapter();
 enzyme.configure({ adapter });
 
 describe("AudioPlayer Component", () => {
-
+  beforeEach("set up", ()=> {
+    window.HTMLMediaElement.prototype.load = () => {
+      /* do nothing */
+    };
+    window.HTMLMediaElement.prototype.play = () => {
+      /* do nothing */
+    };
+    window.HTMLMediaElement.prototype.pause = () => {
+      /* do nothing */
+    };
+    window.HTMLMediaElement.prototype.addTextTrack = () => {
+      /* do nothing */
+    };
+    window.HTMLMediaElement.prototype.pause = () => {};
+  })
   window.requestAnimationFrame = function(callback) {
     setTimeout(callback, 0);
   };
@@ -94,8 +108,8 @@ describe("AudioPlayer Component", () => {
 
   describe("Functions", () => {
     beforeEach(() => {
-      audioPlayer = mount(<AudioPlayer 
-        audioFiles={playlist} 
+      audioPlayer = mount(<AudioPlayer
+        audioFiles={playlist}
         playIcon="/playIcon"
         playHoverIcon="/playHoverIcon"
         forwardIcon="/forwardIcon"

@@ -456,7 +456,7 @@ process.umask = function() { return 0; };
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * 
+ *
  */
 
 function makeEmptyFunction(arg) {
@@ -1062,7 +1062,7 @@ function handlePlay() {
     var playPromise = this.audioRef.play();
     if (playPromise != undefined) {
       playPromise.then(function (success) {}).catch(function (err) {
-        console.log('Error playing! \n\n', error);
+        console.log('Error playing! \n\n', err);
       });
     }
     this.setState({ playing: true, paused: false });
@@ -1659,6 +1659,7 @@ var Forward = function Forward(props) {
         return endPlay(e, true);
       } },
     _react2.default.createElement('img', {
+      className: 'player-img',
       id: 'forward-icon',
       src: forwardHover ? forwardHoverIcon : forwardIcon,
       style: {
@@ -1873,6 +1874,7 @@ var Loop = function Loop(props) {
       },
       onClick: handleLoop },
     _react2.default.createElement('img', {
+      className: 'player-img',
       id: 'loop-icon',
       src: loopHover ? loop ? loopIcon : loopEngagedIcon : loop ? loopEngagedIcon : loopIcon,
       style: {
@@ -1989,6 +1991,7 @@ var Play = function Play(props) {
         return handleHoverOut(e, 'play');
       } },
     _react2.default.createElement('img', {
+      className: 'player-img',
       id: 'play-icon',
       style: {
         height: iconSize
@@ -2045,6 +2048,7 @@ var Rewind = function Rewind(props) {
       },
       onClick: handleRewind },
     _react2.default.createElement('img', {
+      className: 'player-img',
       id: 'rewind-icon',
       src: rewindHover ? rewindHoverIcon : rewindIcon,
       style: {
@@ -2206,6 +2210,7 @@ var Volume = function Volume(props) {
           return handleHoverOut(e, 'mute');
         } },
       _react2.default.createElement('img', {
+        className: 'player-img',
         id: 'volume-icon',
         style: {
           height: iconSize
@@ -2240,7 +2245,7 @@ exports.default = Volume;
 
 exports = module.exports = __webpack_require__(32)(false);
 // Module
-exports.push([module.i, "input[type=\"range\"]::-moz-focus-outer {\n  border: 0; }\n\nbody a {\n  text-decoration: none; }\n\n.audio-player {\n  display: flex;\n  flex-direction: row;\n  cursor: default;\n  align-items: left;\n  justify-content: left;\n  height: auto;\n  align-items: center; }\n  .audio-player ::-webkit-scrollbar {\n    display: none; }\n  .audio-player-track-name {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    -ms-overflow-style: none;\n    overflow: -moz-scrollbars-none;\n    white-space: nowrap;\n    width: 32%;\n    margin: 0em 0.15em; }\n  .audio-player-seeker {\n    display: flex;\n    width: 35%; }\n  .audio-player-controls, .audio-player-time {\n    display: flex;\n    width: fit-content; }\n  .audio-player-time, .audio-player-seeker, .audio-player-volume {\n    margin: 0em 0.15em; }\n  .audio-player-volume {\n    display: flex;\n    width: 33%; }\n    .audio-player-volume img {\n      margin: 0em !important; }\n\n.slide-container {\n  display: flex;\n  align-items: center;\n  margin-right: 0.15em;\n  width: 100%; }\n\n#volume-button {\n  display: flex; }\n\n.marquee {\n  width: auto;\n  min-width: max-content;\n  margin-right: 0.3em; }\n\n.current-time {\n  margin-right: 0.25em;\n  margin-left: 0.25em; }\n\n.current-time,\n.duration,\n#play,\n#pause,\n#volume,\n#forward,\n#loop,\n#rewind {\n  display: flex;\n  flex-direction: column;\n  justify-content: center; }\n\nimg {\n  width: auto;\n  margin: 0em 0.15em; }\n\ninput[type=\"range\"].slider {\n  -webkit-appearance: none;\n  margin: 0em 0em;\n  background-color: rgba(255, 255, 255, 0); }\n\ninput[type=\"range\"] {\n  width: 100% !important; }\n\ninput[type=\"range\"].slider:focus {\n  outline: none; }\n\ninput[type=\"range\"].slider::-webkit-slider-runnable-track {\n  width: 100%;\n  height: 1px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);\n  background: #000000;\n  border-radius: 0px;\n  border: 0px solid #000101; }\n\ninput[type=\"range\"].slider::-webkit-slider-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0.01);\n  -webkit-appearance: none;\n  margin-top: -4.5px; }\n\ninput[type=\"range\"].slider::-webkit-slider-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  -webkit-appearance: none;\n  margin-top: -4.5px; }\n\ninput[type=\"range\"].slider:focus::-webkit-slider-runnable-track {\n  background: #000000; }\n\ninput[type=\"range\"].slider::-moz-range-track {\n  width: 100%;\n  height: 1px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);\n  background: #000000;\n  border-radius: 0px;\n  border: 0px solid #000101; }\n\ninput[type=\"range\"].slider::-moz-range-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0);\n  cursor: default; }\n\ninput[type=\"range\"].slider::-moz-range-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  cursor: default; }\n\ninput[type=\"range\"].slider::-ms-track {\n  width: 100%;\n  height: 1px;\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\ninput[type=\"range\"].slider::-ms-fill-lower {\n  background: #000000;\n  border: 0px solid #000101;\n  border-radius: 0px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0); }\n\ninput[type=\"range\"].slider::-ms-fill-upper {\n  background: #000000;\n  border: 0px solid #000101;\n  border-radius: 0px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0); }\n\ninput[type=\"range\"].slider::-ms-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0.01);\n  height: 1px; }\n\ninput[type=\"range\"].slider::-ms-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  cursor: default; }\n\ninput[type=\"range\"].slider:focus::-ms-fill-lower {\n  background: #000000; }\n\ninput[type=\"range\"].slider:focus::-ms-fill-upper {\n  background: #000000; }\n", ""]);
+exports.push([module.i, "input[type=\"range\"]::-moz-focus-outer {\n  border: 0; }\n\nbody a {\n  text-decoration: none; }\n\n.audio-player {\n  display: flex;\n  flex-direction: row;\n  cursor: default;\n  align-items: left;\n  justify-content: left;\n  height: auto;\n  align-items: center; }\n  .audio-player ::-webkit-scrollbar {\n    display: none; }\n  .audio-player-track-name {\n    overflow-x: scroll;\n    overflow-y: hidden;\n    -ms-overflow-style: none;\n    overflow: -moz-scrollbars-none;\n    white-space: nowrap;\n    width: 32%;\n    margin: 0em 0.15em; }\n  .audio-player-seeker {\n    display: flex;\n    width: 35%; }\n  .audio-player-controls, .audio-player-time {\n    display: flex;\n    width: fit-content; }\n  .audio-player-time, .audio-player-seeker, .audio-player-volume {\n    margin: 0em 0.15em; }\n  .audio-player-volume {\n    display: flex;\n    width: 33%; }\n    .audio-player-volume img {\n      margin: 0em !important; }\n\n.slide-container {\n  display: flex;\n  align-items: center;\n  margin-right: 0.15em;\n  width: 100%; }\n\n#volume-button {\n  display: flex; }\n\n.marquee {\n  width: auto;\n  min-width: max-content;\n  margin-right: 0.3em; }\n\n.current-time {\n  margin-right: 0.25em;\n  margin-left: 0.25em; }\n\n.current-time,\n.duration,\n#play,\n#pause,\n#volume,\n#forward,\n#loop,\n#rewind {\n  display: flex;\n  flex-direction: column;\n  justify-content: center; }\n\n.player-img {\n  width: auto;\n  margin: 0em 0.15em; }\n\ninput[type=\"range\"].slider {\n  -webkit-appearance: none;\n  margin: 0em 0em;\n  background-color: rgba(255, 255, 255, 0); }\n\ninput[type=\"range\"] {\n  width: 100% !important; }\n\ninput[type=\"range\"].slider:focus {\n  outline: none; }\n\ninput[type=\"range\"].slider::-webkit-slider-runnable-track {\n  width: 100%;\n  height: 1px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);\n  background: #000000;\n  border-radius: 0px;\n  border: 0px solid #000101; }\n\ninput[type=\"range\"].slider::-webkit-slider-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0.01);\n  -webkit-appearance: none;\n  margin-top: -4.5px; }\n\ninput[type=\"range\"].slider::-webkit-slider-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  -webkit-appearance: none;\n  margin-top: -4.5px; }\n\ninput[type=\"range\"].slider:focus::-webkit-slider-runnable-track {\n  background: #000000; }\n\ninput[type=\"range\"].slider::-moz-range-track {\n  width: 100%;\n  height: 1px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);\n  background: #000000;\n  border-radius: 0px;\n  border: 0px solid #000101; }\n\ninput[type=\"range\"].slider::-moz-range-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0);\n  cursor: default; }\n\ninput[type=\"range\"].slider::-moz-range-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  cursor: default; }\n\ninput[type=\"range\"].slider::-ms-track {\n  width: 100%;\n  height: 1px;\n  background: transparent;\n  border-color: transparent;\n  color: transparent; }\n\ninput[type=\"range\"].slider::-ms-fill-lower {\n  background: #000000;\n  border: 0px solid #000101;\n  border-radius: 0px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0); }\n\ninput[type=\"range\"].slider::-ms-fill-upper {\n  background: #000000;\n  border: 0px solid #000101;\n  border-radius: 0px;\n  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0); }\n\ninput[type=\"range\"].slider::-ms-thumb {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: rgba(255, 255, 255, 0.01);\n  height: 1px; }\n\ninput[type=\"range\"].slider::-ms-thumb:hover {\n  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;\n  border: 1px solid #000000;\n  height: 10px;\n  width: 10px;\n  border-radius: 50px;\n  background: black;\n  cursor: default; }\n\ninput[type=\"range\"].slider:focus::-ms-fill-lower {\n  background: #000000; }\n\ninput[type=\"range\"].slider:focus::-ms-fill-upper {\n  background: #000000; }\n", ""]);
 
 
 
