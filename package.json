@@ -1,13 +1,13 @@
 {
   "name": "react-modular-audio-player",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "React Audio Player Component for HTML5 Audio: Customizable, Modular, & Styleable",
   "engines": {
     "node": ">= 7.0.0"
   },
   "main": "build/index.js",
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^16.8.6"
   },
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./build/src/spec/testHelper -r jsdom-global/register --exit './build/src/spec/*.spec.js'",
