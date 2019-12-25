@@ -22,6 +22,7 @@ const Loop = (props) => {
       onMouseLeave={e => handleHoverOut(e, 'loop')}
       onClick={handleLoop}>
       <img
+        className="player-img"
         id="loop-icon"
         src={loopHover
         ? loop

@@ -29,25 +29,31 @@ export function endPlay(e, skipped) {
     if (endOfTracks && !skipped && !this.props.loopPlaylist) {
       this.setState({playHover: false, playing: false})
     } else {
-      if (this.state.loop || skipped) 
+      if (this.state.loop || skipped)
         this.audioRef.currentTime = 0;
-      if (this.state.playing) 
+      if (this.state.playing)
         this.handlePlay();
       }
     this.setScrollSize();
   });
 }
 
-export function handlePlay() {
-  if (this.audioRef.readyState < 3) {
+export function handlePlay(tryCount = 0) {
+  if (this.audioRef.readyState < 3 && tryCount <=4) {
     if (!this.state.playing) this.setState({playing: true, paused: false})
     setTimeout(() => {
-      this.handlePlay()
+      this.handlePlay(tryCount + 1)
     }, 500)
   } else {
-  this
+  let playPromise = this
     .audioRef
     .play();
+  if (playPromise != undefined) {
+    playPromise.then(success => {
+    }).catch(err => {
+      console.log('Error playing! \n\n', err);
+    })
+  }
   this.setState({playing: true, paused: false});
   this.handleProgress();
   }
