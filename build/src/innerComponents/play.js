@@ -22,11 +22,12 @@ const Play = (props) => {
       : handlePlay}
       onMouseOver={e => handleHoverOver(e, 'play')}
       onMouseLeave={e => handleHoverOut(e, 'play')}>
-      <img 
+      <img
+        className="player-img"
         id="play-icon"
         style={{
           height: iconSize
-        }} 
+        }}
         src={renderPlayIcon()}/>
     </div>
   )

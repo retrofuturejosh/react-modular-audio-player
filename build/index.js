@@ -1051,13 +1051,20 @@ function endPlay(e, skipped) {
 function handlePlay() {
   var _this2 = this;
 
-  if (this.audioRef.readyState < 3) {
+  var tryCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+  if (this.audioRef.readyState < 3 && tryCount <= 4) {
     if (!this.state.playing) this.setState({ playing: true, paused: false });
     setTimeout(function () {
-      _this2.handlePlay();
+      _this2.handlePlay(tryCount + 1);
     }, 500);
   } else {
-    this.audioRef.play();
+    var playPromise = this.audioRef.play();
+    if (playPromise != undefined) {
+      playPromise.then(function (success) {}).catch(function (err) {
+        console.log('Error playing! \n\n', error);
+      });
+    }
     this.setState({ playing: true, paused: false });
     this.handleProgress();
   }

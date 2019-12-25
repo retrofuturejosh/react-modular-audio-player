@@ -21,6 +21,7 @@ const Rewind = (props) => {
       onMouseLeave={e => handleHoverOut(e, 'rewind')}
       onClick={handleRewind}>
       <img
+        className="player-img"
         id="rewind-icon"
         src={rewindHover
         ? rewindHoverIcon

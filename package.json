@@ -1,6 +1,6 @@
 {
   "name": "react-modular-audio-player",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "React Audio Player Component for HTML5 Audio: Customizable, Modular, & Styleable",
   "engines": {
     "node": ">= 7.0.0"
@@ -42,12 +42,8 @@
     "url": "https://github.com/retrofuturejosh/react-modular-audio-player/issues"
   },
   "homepage": "https://github.com/retrofuturejosh/react-modular-audio-player",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "prop-types": "^15.6.1",
-    "react": "^16.0.0",
-    "webpack": "^2.6.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.0.0",
@@ -68,10 +64,13 @@
     "mocha-image-compiler": "^1.0.0",
     "mocha-jsdom": "^1.1.0",
     "node-sass": "^4.12.0",
-    "react-dom": "^16.2.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.12.0",
     "sass-loader": "^6.0.7",
     "sinon": "^4.4.6",
     "style-loader": "^0.20.2",
-    "url-loader": "^0.6.2"
+    "url-loader": "^0.6.2",
+    "webpack": "^2.6.1"
   }
 }

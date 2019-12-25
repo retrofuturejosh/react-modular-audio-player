@@ -18,8 +18,8 @@ const Volume = (props) => {
   } = props;
 
   return (
-    <div 
-      className="audio-player-volume" 
+    <div
+      className="audio-player-volume"
       style={{
         width
       }}>
@@ -28,11 +28,12 @@ const Volume = (props) => {
         onClick={handleMute}
         onMouseOver={e => handleHoverOver(e, 'mute')}
         onMouseOut={e => handleHoverOut(e, 'mute')}>
-        <img 
+        <img
+          className="player-img"
           id="volume-icon"
           style={{
             height: iconSize
-          }} 
+          }}
           src={renderMuteIcon()}/>
       </div>
       <div className="slide-container">
